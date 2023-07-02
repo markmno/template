@@ -1,0 +1,38 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ${{ matrix.platform }}
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, macos-latest]
+        python-version: ['3.11']
+      
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Set up Venv
+      run: |
+        python -m venv .venv
+        source .venv/bin/activate
+    
+    - name: Install Dependecies
+      run: |
+        pip install --upgrade pip
+        pip install -e ".[dev]"
+
+    - name: Format and sort
+      run: |
+        black .
+        isort .
