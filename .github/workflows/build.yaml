@@ -58,6 +58,6 @@ jobs:
     steps:
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@v1.8.7
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_UPLOAD_TOKEN }}
+        # with:
+        #   user: __token__
+        #   password: ${{ secrets.PYPI_UPLOAD_TOKEN }}
