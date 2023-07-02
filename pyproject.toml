@@ -3,14 +3,16 @@ requires = ["setuptools>=58.0.4", "wheel>=0.37.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "packagename"
+name = "my_project"
 version = "0.0.1"
 description = ""
 requires-python = ">=3.11"
 authors = [{name="Mark Mayerfeld", email = "nosanmark@gmail.com"}]
 license = {file="LICENSE"}
 readme = "README.md"
-dependencies = []
+dependencies = [
+    "torch"
+]
 
 [project.optional-dependencies]
 dev = [
@@ -25,4 +27,4 @@ repository = "https://github.com/RakitaLabSoftware/rlsmorph"
 changelog = "https://github.com/me/spam/blob/master/CHANGELOG.md"
 
 [tool.setuptools]
-packages = ["src"]
+packages = ["my_project"]
