@@ -43,6 +43,23 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Set up Venv
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+      
+      - name: Install Dependecies
+        run: |
+          pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: build
+        run: python -m build 
+      
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
@@ -56,6 +73,20 @@ jobs:
       contents: read
       id-token: write
     steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Set up Venv
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+      
+      - name: Install Dependecies
+        run: |
+          pip install --upgrade pip
+          pip install -e ".[dev]"
       - name: Build
         run: python -m build 
       - name: Publish to PyPI
