@@ -28,4 +28,4 @@ repository = "https://github.com/RakitaLabSoftware/rlsmorph"
 changelog = "https://github.com/me/spam/blob/master/CHANGELOG.md"
 
 [tool.setuptools]
-packages = ["my_project"]
+packages = ["src"]
