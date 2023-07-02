@@ -52,11 +52,7 @@ jobs:
   pypi-publish:
     needs: gh-release
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
     steps:
-
-      
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@v1.8.7
         with:
