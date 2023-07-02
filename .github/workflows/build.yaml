@@ -38,7 +38,7 @@ jobs:
         isort .
     
   pypi-publish:
-    name: Upload release to PyPI
+    needs: build
     runs-on: ubuntu-latest
     permissions:
       id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
