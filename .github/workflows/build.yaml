@@ -35,6 +35,9 @@ jobs:
       run: |
         black .
         isort .
+
+    - name: Build package
+      run: python3 -m build
   
   gh-release:
     needs: build
@@ -43,6 +46,8 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: LICENSE
   
   pypi-publish:
     needs: gh-release
@@ -50,11 +55,7 @@ jobs:
     permissions:
       id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
     steps:
-      - name: Install build packages
-        run: python3 -m pip install --upgrade build
 
-      - name: Build package
-        run: python3 -m build
       
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@master
