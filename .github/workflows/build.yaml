@@ -54,7 +54,7 @@ jobs:
             *.jar    - name: Github Release
   
   pypi-publish:
-    needs: build
+    needs: gh-release
     runs-on: ubuntu-latest
     permissions:
       id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
